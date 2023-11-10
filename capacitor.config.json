@@ -1,0 +1,9 @@
+{
+  "appId": "com.lazydev.freeGames",
+  "appName": "FreeGames",
+  "webDir": "build",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

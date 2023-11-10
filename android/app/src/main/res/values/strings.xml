@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FreeGames</string>
+    <string name="title_activity_main">FreeGames</string>
+    <string name="package_name">com.lazydev.freeGames</string>
+    <string name="custom_url_scheme">com.lazydev.freeGames</string>
+</resources>
