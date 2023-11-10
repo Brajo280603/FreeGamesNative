@@ -1,11 +1,17 @@
-import { parse } from "path";
 
+import { CapacitorHttp } from '@capacitor/core';
 
-export async function GET(){
+export async function getgames(){
   const gamesData = []
 
-  let res = await fetch("https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions");
-  let json = await res.json();
+  const options = {
+    url: "https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions",
+  }
+
+  let res = await CapacitorHttp.get(options) // call using native http api
+
+
+  let json = res.data // returns json (unlike string from node-http)
   
 
     await json?.data?.Catalog?.searchStore?.elements?.forEach((el) => {
@@ -14,8 +20,12 @@ export async function GET(){
         }
     })
     
- 
-  return new Response(JSON.stringify(parseGames(gamesData)));
+
+    
+
+  
+  return parseGames(gamesData)
+
 }
 
 

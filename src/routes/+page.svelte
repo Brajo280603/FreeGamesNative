@@ -1,14 +1,18 @@
 <script>
   import { onDestroy, onMount } from "svelte";
   import GameCards from "../lib/game-cards.svelte";
+  import {getgames} from '../lib/api/server';
 
+
+  let response 
 	async function apicall(){
-		let res = await fetch("/api")
+		// let res = await fetch("/api")
+		let res =  getgames() //no need for fetching as not using any endpoints 
 
-
-		return await res.json()
+		return await res
 	}
 	
+
 
 	let games = { 
 		currents:[],
@@ -43,5 +47,13 @@
 	{:catch error}
 		<h1 class="text-5xl font-bold text-center">Sorry! Server Error, Please Retry...</h1>
 	{/await}
+
+	<!-- {#await games}
+	<h1 class="text-5xl font-bold text-center">Loading...{games}</h1>
+	{:then games}
+	<h1 class="text-md font-bold text-center">Loaded {games}</h1>
+	{:catch error}
+	<h1 class="text-5xl font-bold text-center">Error...{error}</h1>
+	{/await} -->
 	
 </div>
