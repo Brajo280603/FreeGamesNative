@@ -1,5 +1,6 @@
 
 import { CapacitorHttp } from '@capacitor/core';
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 export async function getgames(){
   const gamesData = []
@@ -125,4 +126,43 @@ function ifFree (game) {
     },
     free
   }
+}
+
+export async function scheduleNotification(){
+  let perm = await LocalNotifications.requestPermissions();
+  
+    await LocalNotifications.schedule({
+      notifications:[
+      {
+      title:"Evening Notification for New Free Games",
+      body:"This is your Evening Reminder,Don't forget to check for new Free Games on Epic Games Store",
+      id:Math.random() * (999999999- 1+ 1) + 1,
+      schedule:{
+        on:{
+          hour:20,
+          minute:1,
+          second:5,
+        },
+        allowWhileIdle:true,
+      }
+    },
+    {
+      title:"Good Morning! Dont Forget to check for New Free Games",
+      body:"Don't forget to check for new Free Games on Epic Games Store,on this morning",
+      id:Math.random() * (999999999- 1+ 1) + 1,
+      schedule:{
+        on:{
+          hour:9,
+          minute:1,
+          second:5,
+        },
+        allowWhileIdle:true,
+      }
+    }
+  ]
+  }
+)
+  
+
+  return perm;
 }

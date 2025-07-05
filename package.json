@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "make":"vite build && npx cap sync android",
+    "open":"npx cap open android"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",

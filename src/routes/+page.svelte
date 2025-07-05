@@ -1,7 +1,7 @@
 <script>
   import { onDestroy, onMount } from "svelte";
   import GameCards from "../lib/game-cards.svelte";
-  import {getgames} from '../lib/api/server';
+  import {getgames,scheduleNotification} from '../lib/api/server';
 
 
   let response 
@@ -10,6 +10,11 @@
 		let res =  getgames() //no need for fetching as not using any endpoints 
 
 		return await res
+	}
+
+	async function notification(){
+		let res = await scheduleNotification()
+		return res;
 	}
 	
 
@@ -20,6 +25,7 @@
 	};
 	onMount(()=>{
 	 games = apicall();
+	 notification().then(el=>{console.log("this is a console.log from view");console.log(el)});
 	})
 	onDestroy(()=>{
 		games = { 
